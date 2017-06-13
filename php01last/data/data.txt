@@ -1,0 +1,17 @@
+たなか,test1@tewt.jp,10
+やまざき,test2@tewt.jp,20
+ささき,test3@tewt.jp,30
+すずき,test4@tewt.jp,40
+やまなか,test5@tewt.jp,50
+なかの,test6@tewt.jp,60
+藤代明史,hard.puncher.akifumi@gmail.com,リンゴ
+藤代明史,hard.puncher.akifumi@gmail.com,リンゴ
+田中太郎,tanaka@gmail.com,温州みかん
+佐藤,satou@gmail.com,スイカ
+山本,yamamoto@gmail.com,バナナ
+野中,nonaka@gmail.com,温州みかん
+谷中,taninaka@gmail.com,イチゴ
+畑中,hatanaka@gmail.com,スイカ
+山中,yamanaka@gmail.com,スイカ
+山田,yamada@gmail.com,バナナ
+山田,yamada@gmail.com,バナナ宮司,miyaji@gmail.com,リンゴ宮司,miyaji@gmail.com,リンゴ中村,nakamura@gmail.com,イチゴ柴崎,siba@gmail.com,リンゴ,,伊集院,ijuuin@gmail.com,イチゴ伊集院<br>,ijuuin@gmail.com<br>,イチゴ<br>野中<br>,nonaka@gmail.com,温州みかん山村,yamamura ,<br>学べ,,<br>山田,yamada@gmail.com,バナナ<br>山田,yamada@gmail.com,バナナ<br>
