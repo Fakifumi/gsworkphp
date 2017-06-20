@@ -20,7 +20,7 @@ if($status==false){
 }else{
   //Selectデータの数だけ自動でループしてくれる
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $view = "<p>".$result["name"].",".$result["email"]."</p>";
+    $view .= "<p>".$result["name"].",".$result["email"]."</p>";
   }
 
 }

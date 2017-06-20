@@ -1,7 +1,18 @@
 <?php
+
+session_start();
+if( !isset($_SESSION["chk_ssid"]) || $_SESSION["chk_ssid"]!=session_id()){
+    echo "LOGIN Error!";
+    exit();
+}else{
+    session_regenerate_id(true);
+    $_SESSION["chk_ssid"] = session_id();
+    echo $_SESSION["chk_ssid"];
+}
+
 //1.  DB接続します
 try {
-  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
+    $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
 } catch (PDOException $e) {
   exit('データベースに接続できませんでした。'.$e->getMessage());
 }
@@ -10,18 +21,32 @@ try {
 $stmt = $pdo->prepare("SELECT * FROM gs_bm_table");
 $status = $stmt->execute();
 
-//３．データ表示
+//３．データ表示 リンクと削除をここでしている。
 $view=""; //文字列を入れるための空っぽの変数
 if($status==false){
   //execute（SQL実行時にエラーがある場合.eroorが出来ない場合はelseが動き出す）
   $error = $stmt->errorInfo();
   exit("ErrorQuery:".$error[2]);
-
 }else{
   //Selectデータの数だけ自動でループしてくれる
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $view =
-        "<p>".$result["booktitle"].",".$result["url"].",".$result["impression"].",".$result["datetime"]."</p>";
+//    $view .=
+//        "<p>".$result["booktitle"].",".$result["url"].",".$result["impression"].",".$result["datetime"]."</p>";
+      $view .= "<p>";
+      $view .= '<a href="u_view.php?id='.$result["id"].'">';
+      //上記は左下にidが振られる
+      $view .= $result["booktitle"].":".$result["impression"];
+      //リンクの表示がブックタイトルと感想になる。もし他に表示を追加したい場合は上記に記入を追記する必要がある。
+      $view .='</a>';
+      $view .='　';
+      $view .= '<a href="delete.php?id='.$result["id"].'">';
+      $view .='[削除]';
+      $view .='</a>';
+      $view .="</p>";
+      
+      
+      
+      
   }
 //本のタイトルとurl、感想、日時を表示するようにした。
 //データベースに入っているだけのデータを表示するにはどうすればいいのか。データ表示の部分をそれぞれにする必要がある。
@@ -56,8 +81,6 @@ if($status==false){
 
 <!-- Main[Start] -->
 <div>
-    <div class="container jumbotron"><?=$view?></div>
-    <div class="container jumbotron"><?=$view?></div>
     <div class="container jumbotron"><?=$view?></div>
 </div>
 <!-- Main[End] -->
