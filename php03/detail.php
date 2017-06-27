@@ -2,21 +2,20 @@
 
 //1.GETでidを取得
 $id = $_GET["id"];
-//select01.phpでidが送られてくるのでidを取得する必要がある。3.データ表示のところにある
 
 
 
 //2.DB接続など
 try {
-//  $pdo = new PDO('mysql:dbname=f-akifumi_gs_db;charset=utf8;host=mysql612.db.sakura.ne.jp','f-akifumi','akifumi0829');
   $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
+    //★dbnameが変更する。できてない
 } catch (PDOException $e) {
   exit('データベースに接続できませんでした。'.$e->getMessage());
 }
 
 
 //3.SELECT * FROM gs_an_table WHERE id=***; を取得（bindValueを使用！）
-$stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE id=:id");
+$stmt = $pdo->prepare("SELECT * FROM gs_an_table WHERE id=:id");
 $stmt->bindValue(":id",$id, PDO::PARAM_INT);
 //★ここまだ記入出来てない
 $status = $stmt->execute();
@@ -29,18 +28,12 @@ if($status==false){
   $error = $stmt->errorInfo();
   exit("ErrorQuery:".$error[2]);
 }else{
-  //whileループでは1データのみの抽出を行えない。
-    $result = $stmt->fetch();
+  //Selectデータの数だけ自動でループしてくれる
+   $result = $stmt->fetch();//$result["id"];これだけで一行取得することが出来る
 }
 
+
 ?>
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -55,7 +48,7 @@ if($status==false){
 <header>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
-    <div class="navbar-header"><a class="navbar-brand" href="select01.php">データ一覧</a></div>
+    <div class="navbar-header"><a class="navbar-brand" href="select.php">データ一覧</a></div>
   </nav>
 </header>
 <!-- Head[End] -->
@@ -64,11 +57,11 @@ if($status==false){
 <form method="post" action="update.php">
   <div class="jumbotron">
    <fieldset>
-    <legend>アンケート</legend>
-     <label>書籍名:<input type="text" name="booktitle" value="<?=$result["booktitle"]?>"></label><br>
-     <label>書籍URL:<input type="text" name="url" value="<?=$result["url"]?>"></label><br>
-     <label>コメント<textArea name="impression" rows="4" cols="40">
-     <?=$result["impression"]?>
+    <legend>フリーアンケート</legend>
+     <label>名前：<input type="text" name="name" value="<?=$result["name"]?>"></label><br>
+     <label>Email：<input type="text" name="email" value="<?=$result["email"]?>"></label><br>
+     <label><textArea name="naiyou" rows="4" cols="40">
+     <?=$result["naiyou"]?>
      </textArea></label><br>
 <!--     テキストの場合書き方が違うよ！！-->
      <input type="hidden" name="id" value="<?=$id?>">
@@ -82,3 +75,9 @@ if($status==false){
 
 </body>
 </html>
+
+
+
+
+
+

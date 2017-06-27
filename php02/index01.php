@@ -34,7 +34,7 @@
      <label>コメント<textArea name="impression" rows="4" cols="40"></textArea>
 <!--     上記のnameを変更する必要がある-->
      </label><br>
-<!--登録日時は手動で入力する必要が今回はない。予約が必要であった       り、登録日時を捏造したい場合につければよい。今回は自動でデータ     がはいってくれる。
+<!--登録日時は手動で入力する必要が今回はない。予約が必要であったり、登録日時を捏造したい場合につければよい。今回は自動でデータがはいってくれる。
      <label>登録日時<input type="date" name="datetime">
      </label><br>
 -->
@@ -44,6 +44,22 @@
   </div>
 </form>
 <!-- Main[End] -->
+
+<h3>本の検索</h3>
+    <div>
+        <label><input type="text" id="booksearch" size="30" maxlength="24" name="bookdata"></label>
+        <button id="btn">検索</button>
+    </div>
+    <div id="content"></div>
+
+<!-- Main[Start] -->
+<div>
+    <div><?=$view?></div>
+</div>
+<!-- Main[End] -->
+
+<script src="jquery-3.2.1.min.js"></script>
+<script src="app.js"></script>
 
 
 </body>

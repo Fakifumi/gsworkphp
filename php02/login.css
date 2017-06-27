@@ -1,0 +1,35 @@
+header{
+    text-align: center;
+    border:1px solid blue;
+    background-color:black;
+    color:white;
+    padding-bottom: none;
+}
+
+main{
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    background-image:url("Photoelly046_TP_V.jpg");
+    background-size: cover;
+}
+
+.login{
+    margin-right: 30px;
+    color:white;
+}
+
+.signup{
+    margin-left: 30px;
+    color:white;
+    
+    
+}
+
+footer{
+    
+    border:1px solid blue;
+    text-align: center;
+    background-color:black;
+    color:white;
+}

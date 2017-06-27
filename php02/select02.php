@@ -19,7 +19,7 @@ try {
 }
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_bm_table");
+$stmt = $pdo->prepare("SELECT * FROM gs_user_table");
 $status = $stmt->execute();
 
 //３．データ表示 リンクと削除をここでしている。
@@ -36,7 +36,7 @@ if($status==false){
       $view .= "<p>";
       $view .= '<a href="u_view.php?id='.$result["id"].'">';
       //上記は左下にidが振られる
-      $view .= $result["booktitle"].":".$result["impression"];
+      $view .= $result["user_name"].":".$result["user_id"];
       //リンクの表示がブックタイトルと感想になる。もし他に表示を追加したい場合は上記に記入を追記する必要がある。
       $view .='</a>';
       $view .='　';
@@ -58,11 +58,9 @@ if($status==false){
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>お気に入りの本を表示</title>
-<!--
+<title>ユーザーの一覧</title>
 <link rel="stylesheet" href="css/range.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
--->
 <style>div{padding: 10px;font-size:16px;}</style>
 </head>
 <body id="main">
@@ -73,29 +71,17 @@ if($status==false){
       <div class="navbar-header">
       <a class="navbar-brand" href="index01.php">データ登録</a>
       <a class="navbar-brand" href="login.html">ログアウト</a>
-      <a class="navbar-brand" href="select02.php">ユーザーの一覧</a>
       </div>
     </div>
   </nav>
 </header>
 <!-- Head[End] -->
 
-<!--本の検索のapiを導入する箇所-->
-<h3>本の検索</h3>
-    <div>
-        <label><input type="text" id="booksearch" size="30" maxlength="24" name="bookdata"></label>
-        <button id="btn">検索</button>
-    </div>
-    <div id="content"></div>
-
 <!-- Main[Start] -->
 <div>
     <div class="container jumbotron"><?=$view?></div>
 </div>
 <!-- Main[End] -->
-
-<script src="jquery-3.2.1.min.js"></script>
-<script src="app.js"></script>
 
 </body>
 </html>

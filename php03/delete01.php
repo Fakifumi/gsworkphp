@@ -4,8 +4,6 @@ $id = $_GET["id"];
 
 //2.DB接続など
 try {
-//  $pdo = new PDO('mysql:dbname=f-akifumi_gs_db;charset=utf8;host=mysql612.db.sakura.ne.jp','f-akifumi','akifumi0829');
-    
   $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
     //★dbnameが変更する。できてない
 } catch (PDOException $e) {
@@ -13,13 +11,7 @@ try {
 }
 
 //3.SELECT * FROM gs_an_table WHERE id=***; を取得（bindValueを使用！）
-$stmt = $pdo->prepare("DELETE FROM gs_bm_table WHERE id=:id");
-
-
-$stmt = $pdo->prepare("DELETE FROM gs_user_table WHERE id=:id");
-//ここは２つ書いて良いのかな？？人の情報を削除すると消えるけれども、処理が実行されるからselect01.phpに飛んで行くよ
-
-
+$stmt = $pdo->prepare("DELETE FROM gs_an_table WHERE id=:id");
 //セレクトをデリートに変更したよ。
 $stmt->bindValue(":id",$id, PDO::PARAM_INT);
 //★ここまだ記入出来てない
@@ -32,7 +24,7 @@ if($status==false){
   $error = $stmt->errorInfo();
   exit("ErrorQuery:".$error[2]);
 }else{
-  header("Location: select01.php");
+  header("Location: select.php");
   exit;
 }
 

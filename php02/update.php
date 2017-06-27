@@ -8,6 +8,7 @@ $impression  = $_POST["impression"];
 
 //2.DB接続など
 try {
+//  $pdo = new PDO('mysql:dbname=f-akifumi_gs_db;charset=utf8;host=mysql612.db.sakura.ne.jp','f-akifumi','akifumi0829');
   $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
     //★dbnameが変更する。できてない
 } catch (PDOException $e) {

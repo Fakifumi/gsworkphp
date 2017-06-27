@@ -12,7 +12,7 @@ $impression = $_POST["impression"];
 //2. DB接続します
 try {
 //  $pdo = new PDO('mysql:dbname=f-akifumi_gs_db;charset=utf8;host=mysql612.db.sakura.ne.jp','f-akifumi','akifumi0829');
-    $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
+  $pdo = new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','');
 } catch (PDOException $e) {
   exit('DbConnectError:'.$e->getMessage());
 }
